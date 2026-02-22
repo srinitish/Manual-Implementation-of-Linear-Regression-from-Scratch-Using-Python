@@ -1,61 +1,69 @@
-# 📈 Manual Implementation of Linear Regression from Scratch
+# 📊 Manual Implementation of Logistic Regression (From Scratch)
 
 ## 📌 Project Overview
 
-This project demonstrates the manual implementation of **Linear Regression** using fundamental mathematical concepts without relying on machine learning libraries such as Scikit-learn.
+This project demonstrates the complete manual implementation of **Logistic Regression** for binary classification without using machine learning libraries such as Scikit-learn.
 
-The objective is to deeply understand how Linear Regression works internally by implementing:
+The objective is to understand the mathematical and computational foundations of Logistic Regression by implementing:
 
-- Hypothesis function  
-- Cost function (Mean Squared Error)  
+- Sigmoid activation function  
+- Cross-Entropy (Log Loss) cost function  
 - Gradient Descent optimization  
 - Parameter updates  
-- Model evaluation  
+- Model evaluation metrics  
 
-This project focuses on building the algorithm from first principles using only basic Python libraries like `numpy`.
+The algorithm is built entirely from first principles using core Python and NumPy.
 
 ---
 
 ## 🎯 Objectives
 
-- Understand the mathematical foundation of Linear Regression  
-- Implement Linear Regression without using ML frameworks  
-- Implement Gradient Descent manually  
-- Visualize cost reduction over iterations  
-- Evaluate model performance  
+- Understand the mathematical intuition behind Logistic Regression  
+- Implement binary classification without ML frameworks  
+- Manually derive and implement cross-entropy loss  
+- Optimize parameters using gradient descent  
+- Evaluate classification performance  
 
 ---
 
 ## 🧠 Mathematical Background
 
-### 1️⃣ Hypothesis Function
+### 1️⃣ Hypothesis Function (Sigmoid Function)
 
-For Simple Linear Regression:
+Logistic Regression uses the sigmoid function to map predictions to probabilities:
 
-h(x) = θ₀ + θ₁x
+\[
+h_\theta(x) = \frac{1}{1 + e^{-(\theta^T x)}}
+\]
 
-For Multiple Linear Regression:
+Where:
+- \( \theta \) = model parameters  
+- \( x \) = feature vector  
 
-h(x) = θᵀx
+The output lies between 0 and 1, representing probability.
 
 ---
 
-### 2️⃣ Cost Function (Mean Squared Error)
+### 2️⃣ Cost Function (Binary Cross-Entropy)
 
-J(θ) = (1 / 2m) Σ (h(xᵢ) - yᵢ)²
+\[
+J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(h_\theta(x^{(i)})) + (1 - y^{(i)}) \log(1 - h_\theta(x^{(i)})) \right]
+\]
 
 Where:
-- m = number of training examples  
-- θ = model parameters  
+- \( m \) = number of training samples  
+- \( y \in \{0,1\} \)
 
 ---
 
 ### 3️⃣ Gradient Descent Update Rule
 
-θⱼ := θⱼ - α * ∂J(θ) / ∂θⱼ
+\[
+\theta := \theta - \alpha \frac{\partial J(\theta)}{\partial \theta}
+\]
 
 Where:
-- α = learning rate  
+- \( \alpha \) = learning rate  
 
 ---
 
@@ -65,14 +73,18 @@ Where:
 - NumPy  
 - Matplotlib (for visualization)  
 
+
 ---
 
 ## ⚙️ How It Works
 
-1. Load dataset  
+1. Load and preprocess dataset  
 2. Initialize parameters (θ)  
-3. Compute predictions using hypothesis function  
-4. Calculate cost using MSE  
-5. Update parameters using gradient descent  
-6. Repeat until convergence  
-7. Plot cost vs iterations  
+3. Compute linear combination (z = θᵀx)  
+4. Apply sigmoid to obtain probabilities  
+5. Compute cross-entropy loss  
+6. Update parameters using gradient descent  
+7. Repeat until convergence  
+8. Evaluate model performance  
+
+
